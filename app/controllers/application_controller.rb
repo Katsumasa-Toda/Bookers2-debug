@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  protected
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+    added_attrs = [:email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
   end
 end
